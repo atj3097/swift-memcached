@@ -2,8 +2,8 @@
 
 A native Swift implementation of a Memcached Client using [SwiftNIO](https://github.com/apple/swift-nio) for the networking stack.
 This is apart of a proposal for Google Code of Summer with the Swift Open Source Community
-Proposal
-Forum Post
+- Proposal
+- Forum Post
 
 ## Features
 
