@@ -2,7 +2,7 @@ import NIO
 
 public enum MemcachedCommand {
     case get(key: String)
-    // Add more commands as needed
+    //TODO: add more commands
 }
 
 public final class MemcachedRequestEncoder: MessageToByteEncoder {
@@ -12,14 +12,14 @@ public final class MemcachedRequestEncoder: MessageToByteEncoder {
         switch data {
         case .get(let key):
             out.writeString("get \(key)\r\n")
-        // Encode more commands as needed
+        // TODO: encode more commands
         }
     }
 }
 
 public struct MemcachedResponse {
     let data: ByteBuffer?
-    // Add more response fields as needed
+    // TODO: add more response fields
 }
 
 public final class MemcachedResponseDecoder: ByteToMessageDecoder {
