@@ -1,4 +1,4 @@
-# This workflow will build a Swift project
+# This workflow will build and test a Swift project, run SwiftLint, and report code coverage.
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-swift
 
 name: Swift
@@ -16,7 +16,28 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+
+    - name: Set up SwiftLint
+      run: |
+        brew install swiftlint
+
+    - name: Run SwiftLint
+      run: swiftlint
+
     - name: Build
       run: swift build -v
+
     - name: Run tests
       run: swift test -v
+
+    - name: Generate code coverage
+      run: |
+        xcrun llvm-cov report -instr-profile=.build/debug/codecov/default.profraw -ignore-filename-regex=".build|Tests" -use-color
+        xcrun llvm-cov show -instr-profile=.build/debug/codecov/default.profraw -ignore-filename-regex=".build|Tests" -use-color -format=html > code-coverage/index.html
+
+    - name: Upload code coverage
+      uses: codecov/codecov-action@v2
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        files: ./code-coverage/index.html
+        fail_ci_if_error: true
