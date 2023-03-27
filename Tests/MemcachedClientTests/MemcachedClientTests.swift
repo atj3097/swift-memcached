@@ -10,7 +10,6 @@ final class MemcachedClientTests: XCTestCase {
         let commands: [MemcachedCommand] = [
             .get(key: "key1"),
             .get(key: "key2"),
-            // Add more commands as needed
         ]
         
         let expectation = XCTestExpectation(description: "Pipelined commands should succeed")
@@ -18,7 +17,7 @@ final class MemcachedClientTests: XCTestCase {
         client.sendPipelinedCommands(channel: channel, commands: commands).whenComplete { result in
             switch result {
             case .success(let responses):
-                // Add assertions based on the expected responses
+                // TODO: Adding more assetions for our differnet responses
                 XCTAssertEqual(responses.count, commands.count)
             case .failure(let error):
                 XCTFail("Failed to send pipelined commands: \(error)")
