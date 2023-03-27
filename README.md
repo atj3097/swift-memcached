@@ -34,13 +34,13 @@ import MemcachedClient
 // Create a MemcachedClient instance and connect to the server
 let client = MemcachedClient()
 client.connect(host: "127.0.0.1", port: 11211).whenComplete { result in
-    // Handle connection result...
+    // TODO: Handle connection result...
 }
 
 // Send pipelined commands
 let commands: [MemcachedCommand] = [.get(key: "example"), .set(key: "example", value: "42", flags: 0, expiration: 0)]
 client.sendPipelinedCommands(channel: channel, commands: commands).whenSuccess { responses in
-    // Handle Memcached responses...
+    // TODO: Handle Memcached responses...
 }
 
 ### Contributing
